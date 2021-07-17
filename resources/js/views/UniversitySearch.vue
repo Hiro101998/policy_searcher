@@ -116,7 +116,7 @@
               color="success"
               dark
 			@click="search_universities()">
-              Extra large Button
+              検索
             </v-btn>
 			</div>	 
 			 

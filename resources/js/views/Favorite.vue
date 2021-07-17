@@ -12,7 +12,7 @@
                 {{yourFavorite[0].university_name}}
               </h2>
               <h3>{{yourFavorite[0].department_name}}</h3>
-              <p>{{yourFavorite[0].subject_name}}学科</p>
+              <p>{{yourFavorite[0].subject_name}}</p>
             </v-card-text>
 
             <v-fade-transition>
@@ -37,11 +37,11 @@
       <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      width="600px"
+      width="800px"
     >
       <v-card>
         <v-card-title>
-          <span class="text-h5">大学の詳細を表示する</span>
+          <span class="text-h5">３ポリシー</span>
         </v-card-title>
         <v-card-text>
           <h2>ディプロマポリシー</h2>
@@ -148,6 +148,30 @@ let user_id = data.id;
              axios.post('/api/delete',sendFavorite)
             .then(res => {
               alert("お気に入りから削除しました");
+              //一旦yourFavoritesを空にする。
+              this.favorites =[]
+              this.yourFavorites = []
+              //データベースから再度データを持ってくる。
+               axios.get('/api/favorite')
+		          .then(response => {
+		          //ポリシーのデータを取得
+              let favorites = response.data.favorites;
+              let universities = response.data.universities;
+              //ログインしているuserのfavoritesだけ抽出
+              let favoriteFilter = favorites.filter(users=>users.user_id == user_id);
+             //for文でループさせてフィルターをかける
+             for( let i =0;i<favoriteFilter.length;i++){
+						this.favorites.push(favoriteFilter[i]);
+                        let getFavorite = universities.filter(x=>x.subject_id == this.favorites[i].subject_id);
+                        this.yourFavorites.push(getFavorite);
+			    }
+            if(this.yourFavorites.length > 0){
+            this.favoriteflg = true
+            }
+			})
+		.catch(error => {
+		console.log(error)
+			});
             })
             this.dialog = false
             this.$forceUpdate()

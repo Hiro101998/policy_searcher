@@ -12,7 +12,7 @@
                 {{searchResult.university_name}}
               </h2>
               <h3>{{searchResult.department_name}}</h3>
-              <p>{{searchResult.subject_name}}学科</p>
+              <p>{{searchResult.subject_name}}</p>
             </v-card-text>
 
             <v-fade-transition>
@@ -37,11 +37,11 @@
       <v-row justify="center">
     <v-dialog
       v-model="dialog"
-      width="600px"
+      width="800px"
     >
       <v-card>
         <v-card-title>
-          <span class="text-h5">大学の詳細を表示する</span>
+          <span class="text-h5">３ポリシー</span>
         </v-card-title>
         <v-card-text>
           <h2>ディプロマポリシー</h2>
@@ -145,6 +145,15 @@ export default {
           this.newFavorite.subject_id = this.clickId
           let checkSubject_id = this.clickId
           this.newFavorite.user_id = loginUser.id
+          //重複チェック
+          axios.get('/api/searchResult')
+          .then(response => {
+          //お気に入りデータの取得
+          this.favorites = response.data.favorites;
+          })
+          .catch(error => {
+          console.log(error)
+          });
           for( let i =0;i<this.favorites.length;i++){
 						this.registeredSubject_id.push(this.favorites[i].subject_id);
             this.registeredUser_id.push(this.favorites[i].user_id);
@@ -156,9 +165,13 @@ export default {
             let favorite = this.newFavorite
           axios.post('/api/store',favorite)
             .then(res => {
-              alert("お気に入りに追加しました");
-              this.dialog =false
+              // favoite関係のデータをリセットする。
+              this.favorites = []
+              this. registeredSubject_id =[]
+              this.registeredUser_id = []
             })   
+             alert("お気に入りに追加しました");
+              this.dialog =false
           }
 
           
