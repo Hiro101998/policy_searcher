@@ -211,7 +211,9 @@ export default {
 			//<--県名検索-->
 			if(this.keyPrefecture.length>0){
 				let searchPrefecture = this.keyPrefecture
-				let prefectureFilter = searchProcess.filter(prefecture=>prefecture.prefecture_id == searchPrefecture)
+				let prefectureFilter  = searchProcess.filter(x =>searchPrefecture.includes(x.prefecture_id));
+				//let prefectureFilter = searchProcess.filter(prefecture=>prefecture.prefecture_id == searchPrefecture[0] && searchPrefecture[1])
+				// let prefectureFilter = searchProcess.filter(prefecture=>prefecture.prefecture_id == searchPrefecture)
 				searchProcess = prefectureFilter
 			}
 			//<--県名検索ここまで-->
