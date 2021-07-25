@@ -1,4 +1,3 @@
-
 <template>
 <div>
  <v-form>
@@ -43,9 +42,9 @@
           ></v-select>
 		  </v-card>
         </v-col>
-		
       </v-row>
 
+	<!-- 所在地検索 -->
 	  <v-row>
 		  <v-col
           cols="12"
@@ -81,6 +80,7 @@
 		  </v-card>
 		</v-col>
 
+		<!-- 区分検索 -->
 		  <v-col
           cols="12"
           sm="6"
@@ -102,28 +102,29 @@
           ></v-select>
 		</v-card>
 		</v-col>
-	  </v-row>
-	  
+	 	</v-row>
+	    </v-container>
+		</v-form>
+
+	  <v-container>
 		<!-- ボタン -->
-	  <v-row align="center">
-      <v-col
-        cols="12"
-        sm="6"
-      >
-	   <div class="my-2">
-            <v-btn
-              x-large
-              color="success"
-              dark
-			@click="search_universities()">
-              検索
-            </v-btn>
-			</div>	 
-			 
-		  </v-col>
+	  <v-row>
+        <v-flex text-center my-5 justify="center">
+			<v-hover  v-slot="{ hover }" disabled>
+				<v-btn
+			  	:elevation="hover ? 12 : 2"
+			  	width="45%"
+              	x-large
+              	color="success"
+              	dark
+				@click="search_universities()">
+              	検索
+            	</v-btn>
+			</v-hover>
+		</v-flex>
 	  </v-row>
-    </v-container>
-  </v-form>
+	  </v-container> 
+  
   </div>
 </template>
 
