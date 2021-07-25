@@ -96,7 +96,7 @@
 			v-model="keyOperator"
             attach
             chips
-            label="国公立or私立"
+            label="国公立or私立(私立は現在対応していません。)"
 			prepend-icon="mdi-map-marker"
             multiple
           ></v-select>
