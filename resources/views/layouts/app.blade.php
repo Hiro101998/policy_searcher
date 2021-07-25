@@ -33,11 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                       
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                        <a class="nav-link"><router-link to="/">Home</router-link></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link"><router-link to="/universitySearch">ポリシー検索</router-link></a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link"><router-link to="/favorite">お気に入り</router-link></a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
