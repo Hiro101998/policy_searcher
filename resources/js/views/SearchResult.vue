@@ -45,13 +45,13 @@
         </v-card-title>
         <v-card-text>
           <h2>ディプロマポリシー</h2>
-           <a v-bind:href="`${display.dp_url}`">ディプロマポリシーのリンク</a>
+           <a v-bind:href="`${display.dp_url}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a>
           <p style="white-space:pre-wrap;">{{display.diploma_policy}}</p>
           <h2>カリキュラムポリシー</h2>
-           <a v-bind:href="`${display.cp_url}`">カリキュラムポリシーのリンク</a>
+           <a v-bind:href="`${display.cp_url}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
           <p style="white-space:pre-wrap;">{{display.curriculum_policy}}</p>
           <h2>アドミッションポリシー</h2>
-           <a v-bind:href="`${display.ap_url}`">アドミッションポリシーのリンク</a>
+           <a v-bind:href="`${display.ap_url}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
           <p style="white-space:pre-wrap;">{{display.admission_policy}}</p>
           
         </v-card-text>

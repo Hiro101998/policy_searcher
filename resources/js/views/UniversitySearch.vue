@@ -195,7 +195,7 @@ export default {
 			//<--分野検索-->
 			if(this.keyField.length>0){
 				let searchField = this.keyField
-				let fieldFilter = searchProcess.filter(field=>field.field_id_1 == searchField || field.field_id_2 == searchField || field.field_id_3 == searchField || field.field_id_4 == searchField )
+				let fieldFilter = searchProcess.filter(x =>searchField.includes(x.field_id_1 || x.field_id_2 || field_id_3 || field_id_4))
 				searchProcess = fieldFilter
 			}
 			//<--分野検索ここまで-->
@@ -203,7 +203,7 @@ export default {
 			//<--地方検索-->
 			if(this.keyRegion.length>0){
 				let searchRegion = this.keyRegion
-				let regionFilter = searchProcess.filter(region=>region.region_id == searchRegion)
+				let regionFilter = searchProcess.filter(x =>searchRegion.includes(x.region_id))
 				searchProcess = regionFilter
 			}
 			//<--地方検索ここまで-->
@@ -211,7 +211,7 @@ export default {
 			//<--県名検索-->
 			if(this.keyPrefecture.length>0){
 				let searchPrefecture = this.keyPrefecture
-				let prefectureFilter = searchProcess.filter(prefecture=>prefecture.prefecture_id == searchPrefecture)
+				let prefectureFilter  = searchProcess.filter(x =>searchPrefecture.includes(x.prefecture_id))
 				searchProcess = prefectureFilter
 			}
 			//<--県名検索ここまで-->
@@ -219,7 +219,7 @@ export default {
 			//<--国公立私立検索-->
 			if(this.keyOperator.length>0){
 				let searchOperator = this.keyOperator
-				let operatorFilter = searchProcess.filter(operator=>operator.operator_id == searchOperator)
+				let operatorFilter  = searchProcess.filter(x =>searchOperator.includes(x.operator_id))
 				searchProcess = operatorFilter
 			}
 			//<--国公立私立検索ここまで-->
@@ -227,7 +227,6 @@ export default {
 			
 		//検索結果をsearchResult.vueに送る
 		this.$router.push({name: 'searchResult', params:{searchResults:this.searchResults}})
-		
     　},
 　}
 }
