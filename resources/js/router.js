@@ -5,7 +5,7 @@ import SearchResult from './views/searchResult.vue'
 import Favorite from './views/Favorite.vue'
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/home',
