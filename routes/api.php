@@ -27,7 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/universitySearch',function (Request $request) {
 	
     $universities = \DB::table('universities')->join('departments','universities.university_id','=','departments.university_id')->join('subjects','departments.department_id','=','subjects.department_id')
-    ->join('majors','subjects.subject_id','=','majors.subject_id')->get();
+    ->join('majors','subjects.subject_id','=','majors.subject_id')->where('universities.is_deleted',0)->where('departments.is_deleted',0)->where('subjects.is_deleted',0)->get();
 
 	 
 	$prefectures = \DB::table('prefectures')->get();

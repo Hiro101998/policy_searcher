@@ -45,13 +45,13 @@
         </v-card-title>
         <v-card-text>
           <h2>ディプロマポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteDP_URL}`">ディプロマポリシーのリンク</a> 
+           <a v-bind:href="`${this.favoriteDetail.favoriteDP_URL}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a> 
           <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteDP}}</p>
           <h2>カリキュラムポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteCP_URL}`">カリキュラムポリシーのリンク</a>
+           <a v-bind:href="`${this.favoriteDetail.favoriteCP_URL}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
           <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteCP}}</p>
           <h2>アドミッションポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteAP_URL}`">アドミッションポリシーのリンク</a>
+           <a v-bind:href="`${this.favoriteDetail.favoriteAP_URL}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
           <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteAP}}</p> 
           
         </v-card-text>
