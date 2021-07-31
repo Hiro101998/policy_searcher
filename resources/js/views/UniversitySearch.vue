@@ -1,4 +1,3 @@
-
 <template>
 <div>
  <v-form>
@@ -43,9 +42,9 @@
           ></v-select>
 		  </v-card>
         </v-col>
-		
       </v-row>
 
+	<!-- 所在地検索 -->
 	  <v-row>
 		  <v-col
           cols="12"
@@ -81,6 +80,7 @@
 		  </v-card>
 		</v-col>
 
+		<!-- 区分検索 -->
 		  <v-col
           cols="12"
           sm="6"
@@ -102,6 +102,7 @@
           ></v-select>
 		</v-card>
 		</v-col>
+
 	  </v-row>
 	  </v-container>
 	  
