@@ -39,7 +39,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                        <a class="nav-link"><router-link to="/">Home</router-link></a>
+                        <a class="nav-link"><router-link to="/home">Home</router-link></a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link"><router-link to="/universitySearch">ポリシー検索</router-link></a>
