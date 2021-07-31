@@ -96,33 +96,29 @@
 			v-model="keyOperator"
             attach
             chips
-            label="国公立or私立"
+            label="国公立or私立(私立は現在対応していません。)"
 			prepend-icon="mdi-map-marker"
             multiple
           ></v-select>
 		</v-card>
 		</v-col>
 	  </v-row>
+	  </v-container>
 	  
+	  <v-container>
 		<!-- ボタン -->
-	  <v-row align="center">
-      <v-col
-        cols="12"
-        sm="6"
-      >
-	   <div class="my-2">
+		   <v-flex text-center my-5>
             <v-btn
+			  width="50%"
               x-large
               color="success"
               dark
 			@click="search_universities()">
               検索
             </v-btn>
-			</div>	 
-			 
-		  </v-col>
-	  </v-row>
-    </v-container>
+		   </v-flex> 
+	  </v-container>
+
   </v-form>
   </div>
 </template>
