@@ -27,4 +27,10 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    public function redirectPath()
+    {
+        return 'home#/home';
+        //ログイン後のURLの指定
+    }
 }
