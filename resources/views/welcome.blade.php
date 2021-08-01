@@ -45,7 +45,7 @@
                         @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a class="btn btn-primary btn-xl" href="{{ url('/home') }}" >ログイン</a>
+                        <a class="btn btn-primary btn-xl" href="{{ url('/home#/home') }}" >ログイン</a>
                     @else
                         <a  class="btn btn-primary btn-xl"href="{{ route('login') }}">ログイン</a>
 
