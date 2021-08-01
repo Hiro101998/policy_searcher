@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        return 'home';
+        return 'home#/home';
         //ログイン後のURLの指定
     }
 }
