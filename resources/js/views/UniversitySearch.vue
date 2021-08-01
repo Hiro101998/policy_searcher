@@ -192,7 +192,18 @@ export default {
 			//<--分野検索-->
 			if(this.keyField.length>0){
 				let searchField = this.keyField
-				let fieldFilter = searchProcess.filter(x =>searchField.includes(x.field_id_1 || x.field_id_2 || field_id_3 || field_id_4))
+				let field_1_Filter = searchProcess.filter(x =>searchField.includes(x.field_id_1)) 
+				let field_2_Filter = searchProcess.filter(x =>searchField.includes(x.field_id_2))
+				let field_3_Filter = searchProcess.filter(x =>searchField.includes(x.field_id_3))
+				let field_4_Filter = searchProcess.filter(x =>searchField.includes(x.field_id_4))
+				//concatで結合する
+				let join = field_1_Filter.concat(field_2_Filter,field_3_Filter,field_4_Filter)
+				//subject_idの昇順に並び替える
+				let fieldFilter= join.sort(function(a,b){
+    				if(a.subject_id < b.subject_id) return -1;
+    				if(a.subject_id > b.subject_id) return 1;
+    				return 0;
+					});
 				searchProcess = fieldFilter
 			}
 			//<--分野検索ここまで-->
