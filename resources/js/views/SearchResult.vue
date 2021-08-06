@@ -93,9 +93,6 @@
 
 <script>
 //main.blade.phpから,authで取得したデータを持ってくる
-let loginUser = window.Laravel.data;
-console.log(loginUser.id);
-
 export default {
   props: ["searchResults"],
   data(){
