@@ -79,8 +79,7 @@
 </template>
 
 <script>
-let data = window.Laravel.data;
-let user_id = data.id;
+let user_id = window.Laravel;
 
   export default {
     data () {
