@@ -3,16 +3,17 @@
 
    <?php
    //ここでログインしているデータを拾う
-   $data = Auth::user();
+   $data = Auth::id();
    ?>
 
     <div id="app">
         <router-view/>
     </div>
+
  
  
 @endsection
 
 <script>
-    window.Laravel = {!! json_encode(['data' => $data ?? null]) !!};
+window.Laravel = @json($data);
 </script>
