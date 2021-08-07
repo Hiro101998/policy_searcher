@@ -17,8 +17,6 @@
 </template>
 
 <script>
-let data = window.Laravel.data;
-console.log(data)
   export default {
     data () {
       return {
