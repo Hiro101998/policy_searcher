@@ -119,7 +119,7 @@
 
        
         <footer class="bg-light py-5 page-section">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">大学ポリシー検索ツール &copy; 2021  </div></div>
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 大学ポリシー検索ツール  </div></div>
         </footer>
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
