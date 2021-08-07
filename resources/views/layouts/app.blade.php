@@ -37,6 +37,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    @auth
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                         <a class="nav-link"><router-link to="/home">Home</router-link></a>
@@ -47,6 +48,7 @@
                         <li class="nav-item">
                         <a class="nav-link"><router-link to="/favorite">お気に入り</router-link></a>
                         </li>
+                    @endauth
                        
                         <!-- Authentication Links -->
                         @guest
@@ -91,3 +93,8 @@
     </div>
 </body>
 </html>
+<style>
+li{
+    list-style: none !important;
+}
+</style>
