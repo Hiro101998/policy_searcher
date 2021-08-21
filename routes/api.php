@@ -60,3 +60,8 @@ Route::get('/favorite',function (Request $request) {
 
 	return response()->json(['universities' => $universities,'favorites' => $favorites]);
 	});
+
+	Route::get("/read/{id}", function($id){
+		$read = \DB::table('favorites')->where("user_id",$id)->get();
+		return response()->json(['read' => $read]);
+	   });

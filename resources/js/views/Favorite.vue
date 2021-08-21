@@ -103,7 +103,8 @@ let user_id = window.Laravel;
       }
     },
     mounted(){
-	    axios.get('/api/favorite')
+      const url = "/api/favorite/" + user_id
+	    axios.get(url)
 		.then(response => {
 		//ポリシーのデータを取得
         let favorites = response.data.favorites;
