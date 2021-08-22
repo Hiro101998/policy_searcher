@@ -84,15 +84,9 @@
 </div>
 </template>
 
-
-
-  
-  
- 
-
-
 <script>
 //main.blade.phpから,authで取得したデータを持ってくる
+const loginUserId = window.Laravel
 export default {
   props: ["searchResults"],
   data(){
@@ -141,7 +135,7 @@ export default {
         addFavorite(){
           this.newFavorite.subject_id = this.clickId
           let checkSubject_id = this.clickId
-          this.newFavorite.user_id = loginUser.id
+          this.newFavorite.user_id = loginUserId
           //重複チェック
           axios.get('/api/searchResult')
           .then(response => {
@@ -155,7 +149,7 @@ export default {
 						this.registeredSubject_id.push(this.favorites[i].subject_id);
             this.registeredUser_id.push(this.favorites[i].user_id);
 			        }
-          if(this.registeredSubject_id.includes(checkSubject_id) && this.registeredUser_id.includes(loginUser.id)){
+          if(this.registeredSubject_id.includes(checkSubject_id) && this.registeredUser_id.includes(loginUserId)){
                 alert("登録済です");
               }
           else{
@@ -169,15 +163,8 @@ export default {
             })   
              alert("お気に入りに追加しました");
               this.dialog =false
-          }
-
-          
+          }        
         }
   },
-  
-  
-
-      
-
 }
 </script>

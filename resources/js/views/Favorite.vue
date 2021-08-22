@@ -9,10 +9,10 @@
           >
             <v-card-text>
               <h2 class="text-h6 primary--text">
-                {{yourFavorite[0].university_name}}
+                {{yourFavorite.university_name}}
               </h2>
-              <h3>{{yourFavorite[0].department_name}}</h3>
-              <p>{{yourFavorite[0].subject_name}}</p>
+              <h3>{{yourFavorite.department_name}}</h3>
+              <p>{{yourFavorite.subject_name}}</p>
             </v-card-text>
 
             <v-fade-transition>
@@ -79,101 +79,81 @@
 </template>
 
 <script>
-let user_id = window.Laravel;
+const user_id = window.Laravel;
 
   export default {
     data () {
       return {
-          favoriteflg:false,
-          universities:[],
-          favorites:[],
-          yourFavorites:[],
-          dialog: false,
-          favoriteIndex:'',
+        favoriteflg:false,
+        yourFavorites:[],
+        dialog: false,
+        favoriteIndex:'',
           
-          favoriteDetail:{
-              favoriteDP:[],
-              favoriteDP_URL:'',
-              favoriteCP:'',
-              favoriteDP_URL:'',
-              favoriteAP:'',
-              favoriteAP_URL:'',
-              favorite_id:'',
+        favoriteDetail:{
+          favoriteDP:[],
+          favoriteDP_URL:'',
+          favoriteCP:'',
+          favoriteDP_URL:'',
+          favoriteAP:'',
+          favoriteAP_URL:'',
+          favorite_id:'',
           }
       }
     },
     mounted(){
-	    axios.get('/api/favorite')
-		.then(response => {
-		//ポリシーのデータを取得
-        let favorites = response.data.favorites;
-        let universities = response.data.universities;
-        //ログインしているuserのfavoritesだけ抽出
-        let favoriteFilter = favorites.filter(users=>users.user_id == user_id);
-        //for文でループさせてフィルターをかける
-        for( let i =0;i<favoriteFilter.length;i++){
-						this.favorites.push(favoriteFilter[i]);
-                        let getFavorite = universities.filter(x=>x.subject_id == this.favorites[i].subject_id);
-                        this.yourFavorites.push(getFavorite);
-			}
-            if(this.yourFavorites.length > 0){
-            this.favoriteflg = true
-            }
+      const url = "/api/favorite/" + user_id
+	    axios.get(url)
+		  .then(response => {
+        this. yourFavorites = response.data.favorites;
+        //favoriteが０の時は表示させない
+        if(this.yourFavorites.length > 0){
+        this.favoriteflg = true
+        }
 			})
-		.catch(error => {
-		console.log(error)
+		  .catch(error => {
+		  console.log(error)
 			});
-                    },
+              },
         methods: {
         moreInfo(getIndex) {
-                this.favoriteIndex = getIndex
-                console.log(this.favoriteIndex)
-                this.favoriteDetail.favoriteDP =this.yourFavorites[this.favoriteIndex][0].diploma_policy
-                this.favoriteDetail.favoriteDP_URL =this.yourFavorites[this.favoriteIndex][0].dp_url
-                this.favoriteDetail.favoriteCP =this.yourFavorites[this.favoriteIndex][0].curriculum_policy
-                this.favoriteDetail.favoriteCP_URL =this.yourFavorites[this.favoriteIndex][0].cp_url
-                this.favoriteDetail.favoriteAP =this.yourFavorites[this.favoriteIndex][0].admission_policy
-                this.favoriteDetail.favoriteAP_URL =this.yourFavorites[this.favoriteIndex][0].ap_url
-                let getFavorite_id = this.favorites.filter(y=>y.subject_id == this.yourFavorites[this.favoriteIndex][0].subject_id)
-                this.favoriteDetail.favorite_id = getFavorite_id[0].favorite_id
-                this.dialog =true
+          this.favoriteIndex = getIndex
+          console.log(this.favoriteIndex)
+          this.favoriteDetail.favoriteDP =this.yourFavorites[this.favoriteIndex].diploma_policy
+          this.favoriteDetail.favoriteDP_URL =this.yourFavorites[this.favoriteIndex].dp_url
+          this.favoriteDetail.favoriteCP =this.yourFavorites[this.favoriteIndex].curriculum_policy
+          this.favoriteDetail.favoriteCP_URL =this.yourFavorites[this.favoriteIndex].cp_url
+          this.favoriteDetail.favoriteAP =this.yourFavorites[this.favoriteIndex].admission_policy
+          this.favoriteDetail.favoriteAP_URL =this.yourFavorites[this.favoriteIndex].ap_url
+          this.favoriteDetail.favorite_id = this.yourFavorites[this.favoriteIndex].favorite_id
+          this.dialog =true
         },
         reset(){
           this.dialog = false
           this.favoriteIndex=''
         },
         deleteFavorite(){
-            let sendFavorite = this.favoriteDetail
-             axios.post('/api/delete',sendFavorite)
-            .then(res => {
-              alert("お気に入りから削除しました");
-              //一旦yourFavoritesを空にする。
-              this.favorites =[]
-              this.yourFavorites = []
-              //データベースから再度データを持ってくる。
-               axios.get('/api/favorite')
-		          .then(response => {
-		          //ポリシーのデータを取得
-              let favorites = response.data.favorites;
-              let universities = response.data.universities;
-              //ログインしているuserのfavoritesだけ抽出
-              let favoriteFilter = favorites.filter(users=>users.user_id == user_id);
-             //for文でループさせてフィルターをかける
-             for( let i =0;i<favoriteFilter.length;i++){
-						this.favorites.push(favoriteFilter[i]);
-                        let getFavorite = universities.filter(x=>x.subject_id == this.favorites[i].subject_id);
-                        this.yourFavorites.push(getFavorite);
-			    }
-            if(this.yourFavorites.length > 0){
-            this.favoriteflg = true
-            }
-			})
-		.catch(error => {
-		console.log(error)
-			});
-            })
-            this.dialog = false
-            this.$forceUpdate()
+          let sendFavorite = this.favoriteDetail
+          axios.post('/api/delete',sendFavorite)
+          .then(res => {
+          alert("お気に入りから削除しました");
+          //一旦yourFavoritesを空にする。
+          this.yourFavorites = []
+          //データベースから再度データを持ってくる。
+          const url = "/api/favorite/" + user_id
+	        axios.get(url)
+		      .then(response => {
+          this. yourFavorites = response.data.favorites;
+          //favoriteが０の時は表示させない
+          if(this.yourFavorites.length > 0){
+          this.favoriteflg = true
+          }
+			    })
+		      .catch(error => {
+		      console.log(error)
+			    });
+          })
+          this.dialog = false
+          this.$forceUpdate()
         }
      }
   }
