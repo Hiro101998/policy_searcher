@@ -1,11 +1,21 @@
 <template>
 <div>
+    <div class="text-center">
+    <v-progress-circular
+    v-if="loading ===false"
+    :size="100"
+    color="primary"
+    indeterminate
+    ></v-progress-circular>
+    </div>
+         
       <v-row>
         <v-col v-for="(searchResult) in searchResults" :key="searchResult.index"
             cols="12"
             sm="4">
           <v-hover v-slot:default="{ hover }">
           <v-card
+          v-if="loading===true"
           >
             <v-card-text>
               <h2 class="text-h6 primary--text">
@@ -35,10 +45,10 @@
     <!-- ここからダイアログ -->
       <v-app v-for="display in displays" :key="display.index">
       <v-row justify="center">
-    <v-dialog
+      <v-dialog
       v-model="dialog"
       width="800px"
-    >
+      >
       <v-card>
         <v-card-title>
           <span class="text-h5">３ポリシー</span>
@@ -64,7 +74,7 @@
           >
             閉じる
           </v-btn>
-                <v-btn
+          <v-btn
             class="mx-2"
             fab
             dark
@@ -75,7 +85,7 @@
           <v-icon dark>
             mdi-heart
           </v-icon>
-    </v-btn>
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -91,6 +101,7 @@ export default {
   props: ["searchResults"],
   data(){
     return{
+      loading:false,
       clickId:'',
       policies:[],
       dialog: false,
@@ -107,6 +118,9 @@ export default {
     }
   },
   		created(){
+      setTimeout(() => {
+      this.loading = true
+      }, 5000)
 			axios.get('/api/searchResult')
 				.then(response => {
 					//ポリシーのデータを取得
