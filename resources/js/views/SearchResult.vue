@@ -120,7 +120,7 @@ export default {
   		created(){
       setTimeout(() => {
       this.loading = true
-      }, 5000)
+      }, 7000)
 			axios.get('/api/searchResult')
 				.then(response => {
 					//ポリシーのデータを取得

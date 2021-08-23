@@ -6,22 +6,15 @@
 
     <v-card class="mb-2">
       <v-card-title>大学ポリシー検索ツールをリリースしました。</v-card-title>
-      <v-card-subtitle>20xx年●月●日</v-card-subtitle>
+      <v-card-subtitle>2021年8月22日</v-card-subtitle>
     </v-card>
     <v-card class="mb-2">
       <v-card-title>不具合報告・ご意見送信フォームを設置しました</v-card-title>
-      <v-card-subtitle>20xx年●月●日</v-card-subtitle>
-      <v-card-text></v-card-text>
+      <v-card-subtitle>2021年8月22日</v-card-subtitle>
     </v-card>
   </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        dialog: false,
-      }
-    },
-  }
+
 </script>
