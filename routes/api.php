@@ -38,12 +38,10 @@ Route::get('/universitySearch',function (Request $request) {
 	return response()->json(['universities' => $universities,'regions' => $regions,'prefectures' => $prefectures,'fields' => $fields,'operators' => $operators]);
 	
 });
-
-Route::get('/searchResult',function (Request $request) {
-	$policies = \DB::table('policies')->get();
-	$favorites = \DB::table('favorites')->get();
-	
-	return response()->json(['policies' => $policies,'favorites'=>$favorites]);
+//SearchResultでポリシーデータをgetする用
+Route::get('/policy/{subject_id}',function ($subject_id) {
+	$policies = \DB::table('policies')->where('subject_id',$subject_id)->get();
+	return response()->json(['policies' => $policies]);
 });
 
 //お気に入りに追加

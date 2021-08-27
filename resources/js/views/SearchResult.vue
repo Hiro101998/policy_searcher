@@ -1,22 +1,11 @@
 <template>
 <div>
-    <div class="text-center">
-    <v-progress-circular
-    v-if="loading ===false"
-    :size="100"
-    color="primary"
-    indeterminate
-    ></v-progress-circular>
-    </div>
-         
       <v-row>
         <v-col v-for="(searchResult) in searchResults" :key="searchResult.index"
             cols="12"
             sm="4">
           <v-hover v-slot:default="{ hover }">
-          <v-card
-          v-if="loading===true"
-          >
+          <v-card>
             <v-card-text>
               <h2 class="text-h6 primary--text">
                 {{searchResult.university_name}}
@@ -96,19 +85,17 @@
 
 <script>
 //main.blade.phpから,authで取得したデータを持ってくる
-const loginUserId = window.Laravel
+const user_id= window.Laravel
 export default {
   props: ["searchResults"],
   data(){
     return{
-      loading:false,
       clickId:'',
-      policies:[],
       dialog: false,
       displays:[],
       favorites:[],
+      favoriteSubject_id:[],
       registeredSubject_id:[],
-      registeredUser_id:[],
 
       newFavorite:{
         user_id:'',
@@ -117,67 +104,55 @@ export default {
       
     }
   },
-  		created(){
-      setTimeout(() => {
-      this.loading = true
-      }, 7000)
-			axios.get('/api/searchResult')
-				.then(response => {
-					//ポリシーのデータを取得
-					this.policies = response.data.policies;
-          //お気に入りデータの取得
-          this.favorites = response.data.favorites;
-				})
-				.catch(error => {
-					console.log(error)
-				});
-		},
       methods: {
-        moreInfo(getId) {
-        this.clickId = getId
-				let getPolicy = this.policies.filter(policy=>policy.subject_id == getId)
-        this.displays = getPolicy
+        moreInfo(getSubjectId) {
+        this.clickId = getSubjectId
+        const getPolicyUrl = "/api/policy/" + getSubjectId
+	      axios.get(getPolicyUrl)
+		    .then(response => {
+        this. displays = response.data.policies;
+        })
+		    .catch(error => {
+		    console.log(error)
+			  });
 				this.dialog =true
-    },
+        },
         reset(){
           this.clickId ='',
           this.displays =''
           this.dialog = false
         },
-
         //お気に入りに追加する
         addFavorite(){
           this.newFavorite.subject_id = this.clickId
-          let checkSubject_id = this.clickId
-          this.newFavorite.user_id = loginUserId
+          this.newFavorite.user_id = user_id
           //重複チェック
-          axios.get('/api/searchResult')
+          const getFavoriteUrl = '/api/favorite/' + user_id
+          axios.get(getFavoriteUrl)
           .then(response => {
           //お気に入りデータの取得
-          this.favorites = response.data.favorites;
-          })
-          .catch(error => {
-          console.log(error)
-          });
-          for( let i =0;i<this.favorites.length;i++){
-						this.registeredSubject_id.push(this.favorites[i].subject_id);
-            this.registeredUser_id.push(this.favorites[i].user_id);
+          let favorites = response.data.favorites;
+          for( let i =0;i<favorites.length;i++){
+						this.registeredSubject_id.push(favorites[i].subject_id);
 			        }
-          if(this.registeredSubject_id.includes(checkSubject_id) && this.registeredUser_id.includes(loginUserId)){
-                alert("登録済です");
+          if(this.registeredSubject_id.includes(this.newFavorite.subject_id)){
+                alert("お気に入りに登録済です。");
               }
-          else{
+           else{
             let favorite = this.newFavorite
-          axios.post('/api/store',favorite)
+            axios.post('/api/store',favorite)
             .then(res => {
               // favoite関係のデータをリセットする。
               this.favorites = []
-              this. registeredSubject_id =[]
-              this.registeredUser_id = []
+              this.registeredSubject_id =[]
             })   
-             alert("お気に入りに追加しました");
+             alert("お気に入りに追加しました。");
               this.dialog =false
-          }        
+          }     
+          })
+          .catch(error => {
+          console.log(error)
+          }); 
         }
   },
 }
