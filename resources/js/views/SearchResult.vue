@@ -1,5 +1,6 @@
 <template>
-<div>
+  <v-app>
+    <div v-if="searchResults.length > 0">
       <v-row>
         <v-col v-for="(searchResult) in searchResults" :key="searchResult.index"
             cols="12"
@@ -7,7 +8,7 @@
           <v-hover v-slot:default="{ hover }">
           <v-card>
             <v-card-text>
-              <h2 class="text-h6 primary--text">
+              <h2>
                 {{searchResult.university_name}}
               </h2>
               <h3>{{searchResult.department_name}}</h3>
@@ -31,56 +32,65 @@
         </v-col>
       </v-row>
 
-    <!-- ここからダイアログ -->
-      <v-app v-for="display in displays" :key="display.index">
-      <v-row justify="center">
-      <v-dialog
-      v-model="dialog"
-      width="800px"
+      <!-- ここからダイアログ -->
+      <v-row v-for="display in displays" :key="display.index">
+        <v-col justify="center">
+          <v-dialog
+            v-model="dialog"
+            width="800px"
+          >
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">３ポリシー</span>
+              </v-card-title>
+              <v-card-text>
+                <h2>ディプロマポリシー</h2>
+                <a v-bind:href="`${display.dp_url}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a>
+                <p style="white-space:pre-wrap;">{{display.diploma_policy}}</p>
+                <h2>カリキュラムポリシー</h2>
+                <a v-bind:href="`${display.cp_url}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
+                <p style="white-space:pre-wrap;">{{display.curriculum_policy}}</p>
+                <h2>アドミッションポリシー</h2>
+                <a v-bind:href="`${display.ap_url}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
+                <p style="white-space:pre-wrap;">{{display.admission_policy}}</p>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="reset()"
+                >
+                  閉じる
+                </v-btn>
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  small
+                  color="pink"
+                  @click="addFavorite"
+                >
+                  <v-icon dark>
+                    mdi-heart
+                  </v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-alert
+        colored-border
+        type="warning"
+        elevation="2"
       >
-      <v-card>
-        <v-card-title>
-          <span class="text-h5">３ポリシー</span>
-        </v-card-title>
-        <v-card-text>
-          <h2>ディプロマポリシー</h2>
-           <a v-bind:href="`${display.dp_url}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a>
-          <p style="white-space:pre-wrap;">{{display.diploma_policy}}</p>
-          <h2>カリキュラムポリシー</h2>
-           <a v-bind:href="`${display.cp_url}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
-          <p style="white-space:pre-wrap;">{{display.curriculum_policy}}</p>
-          <h2>アドミッションポリシー</h2>
-           <a v-bind:href="`${display.ap_url}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
-          <p style="white-space:pre-wrap;">{{display.admission_policy}}</p>
-          
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="green darken-1"
-            text
-            @click="reset()"
-          >
-            閉じる
-          </v-btn>
-          <v-btn
-            class="mx-2"
-            fab
-            dark
-            small
-            color="pink"
-            @click="addFavorite"
-          >
-          <v-icon dark>
-            mdi-heart
-          </v-icon>
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+        条件に合致するデータがありません。条件を変更して再検索してください。
+      </v-alert>
+    </div>
   </v-app>
-</div>
 </template>
 
 <script>
