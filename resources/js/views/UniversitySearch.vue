@@ -1,60 +1,60 @@
 <template>
-<div>
- <v-form>
-	 <v-container>
-      <v-row>
-		  <!-- //キーワード検索  -->
-        <v-col
-          cols="12"
-          sm="6"
-        >
+ <div>
+   <v-form>
+	<v-container>
+     <v-row>
+	  <!-- //キーワード検索  -->
+      <v-col
+        cols="12"
+        sm="6"
+      >
 		<v-card
-    	max-width="auto"
+    	 max-width="auto"
 		>
-		<v-card-title>大学名検索</v-card-title>
-          <v-text-field 
-            label="大学名"
-            prepend-icon="mdi-map-marker"
-			v-model="keyWord"
-          ></v-text-field>
-		  </v-card>
-    </v-col>
-
-	<!-- //学びたい分野検索 -->
-	<v-col
-          cols="12"
-          sm="6"
-        >
-		<v-card
-    	max-width="auto"
-		>
-		<v-card-title>学びたい分野で検索</v-card-title>
-          <v-select
-		  	item-text="field_name"
-			item-value="field_id"
-		  	:items= this.fields
-			v-model="keyField"
-            attach
-            chips
-            label="分野"
-			prepend-icon="mdi-map-marker"
-            multiple
-          ></v-select>
-		  </v-card>
-        </v-col>
-      </v-row>
+		 <v-card-title>大学名検索</v-card-title>
+         <v-text-field 
+           label="大学名"
+           prepend-icon="mdi-map-marker"
+		   v-model="keyWord"
+         ></v-text-field>
+		</v-card>
+      </v-col>
+	  <!-- //学びたい分野検索 -->
+	  <v-col
+        cols="12"
+        sm="6"
+      >
+	    <v-card
+    	 max-width="auto"
+	    >
+		 <v-card-title>学びたい分野で検索</v-card-title>
+         <v-select
+		   item-text="field_name"
+		   item-value="field_id"
+		   :items= this.fields
+		   v-model="keyField"
+           attach
+           chips
+           label="分野"
+		   prepend-icon="mdi-map-marker"
+           multiple
+         >
+		 </v-select>
+	    </v-card>
+      </v-col>
+     </v-row>
 
 	<!-- 所在地検索 -->
 	  <v-row>
-		  <v-col
+		<v-col
           cols="12"
           sm="6"
         >
-		<v-card
-    	max-width="auto"
-		>
-		<v-card-title>大学の所在地で検索</v-card-title>
-		 <v-select
+		 <v-card
+    	  max-width="auto"
+		 >
+		  <v-card-title>大学の所在地で検索</v-card-title>
+		  <v-select
 		  	item-text="region"
 			item-value="region_id"
 			:items= this.regions
@@ -64,7 +64,8 @@
             label="地方"
 			prepend-icon="mdi-map-marker"
             multiple
-          ></v-select>
+          >
+		  </v-select>
 
 		   <v-select
 		   	item-text="prefecture"
@@ -76,20 +77,21 @@
             label="都道府県"
 			prepend-icon="mdi-map-marker"
             multiple
-          ></v-select>
-		  </v-card>
-		</v-col>
+          >
+		  </v-select>
+		 </v-card>
+	    </v-col>
 
 		<!-- 区分検索 -->
-		  <v-col
-          cols="12"
-          sm="6"
+		<v-col
+         cols="12"
+         sm="6"
         >
-		<v-card
-    	max-width="auto"
-		>
-		<v-card-title>国公立or私立で絞り込み</v-card-title>
-		 <v-select
+		 <v-card
+    	  max-width="auto"
+		 >
+		  <v-card-title>国公立or私立で絞り込み</v-card-title>
+		  <v-select
 		 	item-text="operator"
 			item-value="operator_id"
 		  	:items= this.operators
@@ -99,29 +101,28 @@
             label="国公立or私立(私立は現在対応していません。)"
 			prepend-icon="mdi-map-marker"
             multiple
-          ></v-select>
-		</v-card>
+          >
+		  </v-select>
+		 </v-card>
 		</v-col>
-
 	  </v-row>
-	  </v-container>
+	</v-container>
 	  
-	  <v-container>
-		<!-- ボタン -->
-		   <v-flex text-center my-5>
-            <v-btn
-			  width="50%"
-              x-large
-              color="success"
-              dark
+	<v-container>
+	 <!-- ボタン -->
+		<v-flex text-center my-5>
+         <v-btn
+			width="50%"
+            x-large
+            color="success"
+            dark
 			@click="search_universities()">
-              検索
-            </v-btn>
-		   </v-flex> 
-	  </v-container>
-
+            検索
+         </v-btn>
+		</v-flex> 
+	</v-container>
   </v-form>
-  </div>
+ </div>
 </template>
 
 <script>

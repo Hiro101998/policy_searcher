@@ -1,4 +1,5 @@
 <template>
+  <v-app>
     <div v-if="favoriteflg">
       <v-row>
         <v-col v-for="(yourFavorite,index) in yourFavorites" :key="yourFavorite.index"
@@ -8,7 +9,7 @@
           <v-card
           >
             <v-card-text>
-              <h2 class="text-h6 primary--text">
+              <h2>
                 {{yourFavorite.university_name}}
               </h2>
               <h3>{{yourFavorite.department_name}}</h3>
@@ -33,49 +34,55 @@
       </v-row>
 
     <!-- ここからダイアログ -->
-      <v-app>
       <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      width="800px"
-    >
-      <v-card>
-        <v-card-title>
-          <span class="text-h5">３ポリシー</span>
-        </v-card-title>
-        <v-card-text>
-          <h2>ディプロマポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteDP_URL}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a> 
-          <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteDP}}</p>
-          <h2>カリキュラムポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteCP_URL}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
-          <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteCP}}</p>
-          <h2>アドミッションポリシー</h2>
-           <a v-bind:href="`${this.favoriteDetail.favoriteAP_URL}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
-          <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteAP}}</p> 
-          
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
+        <v-dialog
+        v-model="dialog"
+        width="800px"
+        >
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">３ポリシー</span>
+            </v-card-title>
+            <v-card-text>
+              <h2>ディプロマポリシー</h2>
+              <a v-bind:href="`${this.favoriteDetail.favoriteDP_URL}`" target="_blank" rel="noopener noreferrer">ディプロマポリシーのリンク</a> 
+              <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteDP}}</p>
+              <h2>カリキュラムポリシー</h2>
+              <a v-bind:href="`${this.favoriteDetail.favoriteCP_URL}`" target="_blank" rel="noopener noreferrer">カリキュラムポリシーのリンク</a>
+              <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteCP}}</p>
+              <h2>アドミッションポリシー</h2>
+              <a v-bind:href="`${this.favoriteDetail.favoriteAP_URL}`" target="_blank" rel="noopener noreferrer">アドミッションポリシーのリンク</a>
+              <p style="white-space:pre-wrap;">{{this.favoriteDetail.favoriteAP}}</p>  
+            </v-card-text>
+            <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
             color="green darken-1"
             text
             @click="reset()"
-          >
+            >
             閉じる
-          </v-btn>
+            </v-btn>
             <v-btn color="error"
             class="mx-2"
             @click="deleteFavorite">
             お気に入りから削除
-        </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+            </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+     </v-row>
+    </div>
+    <div v-else>
+      <v-alert
+      colored-border
+      type="warning"
+      elevation="2"
+      >
+      現在お気に入りに登録しているデータはありません。
+     </v-alert>
+    </div>
   </v-app>
-</div>
-
 </template>
 
 <script>
@@ -144,8 +151,8 @@ const user_id = window.Laravel;
 		      .then(response => {
           this. yourFavorites = response.data.favorites;
           //favoriteが０の時は表示させない
-          if(this.yourFavorites.length > 0){
-          this.favoriteflg = true
+          if(this.yourFavorites.length < 1){
+          this.favoriteflg = false
           }
 			    })
 		      .catch(error => {
