@@ -2,16 +2,23 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "mix",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "test": "NODE_ENV=test jest"
     },
     "devDependencies": {
+        "@babel/core": "^7.15.4",
+        "@babel/preset-env": "^7.15.4",
+        "@vue/test-utils": "^1.2.2",
         "axios": "^0.21",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-jest": "^27.1.0",
         "bootstrap": "^4.6.0",
+        "jest": "^27.1.0",
         "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -21,11 +28,14 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "vue": "^2.6.12",
+        "vue-jest": "^3.0.7",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@mdi/font": "^5.9.55",
+        "jsdom": "^16.7.0",
+        "jsdom-global": "^3.0.2",
         "vue-router": "^3.5.1",
         "vuetify": "^2.5.3"
     }
