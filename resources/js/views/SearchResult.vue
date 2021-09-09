@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div v-if="searchResults.length > 0">
+    <div v-if="searchResults != ''">
       <v-row>
         <v-col v-for="(searchResult) in searchResults" :key="searchResult.index"
             cols="12"
@@ -69,7 +69,7 @@
                   dark
                   small
                   color="pink"
-                  @click="addFavorite"
+                  @click="addFavorite()"
                 >
                   <v-icon dark>
                     mdi-heart
@@ -94,9 +94,11 @@
 </template>
 
 <script>
+ import axios from 'axios'
 //main.blade.phpから,authで取得したデータを持ってくる
 const user_id= window.Laravel
 export default {
+  name:"searchResult",
   props: ["searchResults"],
   data(){
     return{
@@ -133,7 +135,7 @@ export default {
           this.dialog = false
         },
         //お気に入りに追加する
-        addFavorite(){
+          addFavorite(){
           this.newFavorite.subject_id = this.clickId
           this.newFavorite.user_id = user_id
           //重複チェック
