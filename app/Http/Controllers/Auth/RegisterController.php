@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::MAIN;
 
     /**
      * Create a new controller instance.
@@ -73,7 +73,7 @@ class RegisterController extends Controller
 
     public function redirectPath()
     {
-        return 'home#/home';
+        return 'main#/home';
         //ログイン後のURLの指定
     }
 }
