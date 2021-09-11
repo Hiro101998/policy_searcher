@@ -140,7 +140,7 @@ export default {
     },
     mounted() {
         //ゲストユーザーは利用できない
-        if ((this.user_id = 1)) {
+        if (user_id == 1) {
             this.gestLogin = true;
         } else {
             const url = "/api/favorite/" + user_id;

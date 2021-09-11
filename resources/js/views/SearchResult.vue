@@ -1,6 +1,11 @@
 <template>
     <v-app>
-        <div v-if="searchResults.length > 0">
+         <div v-if="errorMessage">
+            <v-alert colored-border type="warning" elevation="2">
+                条件に合致するデータがありません。条件を変更して再検索してください。
+            </v-alert>
+        </div>
+        <div v-else>
             <v-row>
                 <v-col
                     v-for="searchResult in searchResults"
@@ -105,21 +110,18 @@
                 </v-col>
             </v-row>
         </div>
-        <div v-else>
-            <v-alert colored-border type="warning" elevation="2">
-                条件に合致するデータがありません。条件を変更して再検索してください。
-            </v-alert>
-        </div>
+       
     </v-app>
 </template>
 
 <script>
-//main.blade.phpから,authで取得したデータを持ってくる
+//  window.location.href = 'main#/universitySearch'
 const user_id = window.Laravel;
 export default {
     props: ["searchResults"],
     data() {
         return {
+            errorMessage:false,
             clickId: "",
             dialog: false,
             displays: [],
@@ -132,6 +134,11 @@ export default {
                 subject_id: ""
             }
         };
+    },
+    mounted(){
+        if(this.searchResults.length <1){
+            this.errorMessage = true
+        }
     },
     methods: {
         moreInfo(getSubjectId) {
@@ -154,7 +161,7 @@ export default {
         //お気に入りに追加する
         addFavorite() {
             //ゲストユーザーはお気に入り
-            if ((this.user_id = 1)) {
+            if ((user_id == 1)) {
                 alert("ゲストユーザーはお気に入り機能を利用できません");
             } else {
                 this.newFavorite.subject_id = this.clickId;

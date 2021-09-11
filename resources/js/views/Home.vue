@@ -35,7 +35,7 @@ export default {
         };
     },
     mounted() {
-        if ((this.user_id = 1)) {
+        if ((user_id == 1)) {
             this.opinionForm = false;
         }
     }
