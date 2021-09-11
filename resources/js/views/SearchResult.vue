@@ -54,7 +54,7 @@
                                     rel="noopener noreferrer"
                                     >ディプロマポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ display.diploma_policy }}
                                 </p>
                                 <h2>カリキュラムポリシー</h2>
@@ -64,7 +64,7 @@
                                     rel="noopener noreferrer"
                                     >カリキュラムポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ display.curriculum_policy }}
                                 </p>
                                 <h2>アドミッションポリシー</h2>
@@ -74,7 +74,7 @@
                                     rel="noopener noreferrer"
                                     >アドミッションポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ display.admission_policy }}
                                 </p>
                             </v-card-text>

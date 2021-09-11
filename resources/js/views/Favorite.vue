@@ -57,7 +57,7 @@
                                     rel="noopener noreferrer"
                                     >ディプロマポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ this.favoriteDetail.favoriteDP }}
                                 </p>
                                 <h2>カリキュラムポリシー</h2>
@@ -69,7 +69,7 @@
                                     rel="noopener noreferrer"
                                     >カリキュラムポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ this.favoriteDetail.favoriteCP }}
                                 </p>
                                 <h2>アドミッションポリシー</h2>
@@ -81,7 +81,7 @@
                                     rel="noopener noreferrer"
                                     >アドミッションポリシーのリンク</a
                                 >
-                                <p style="white-space:pre-wrap;">
+                                <p style="white-space:pre-line;">
                                     {{ this.favoriteDetail.favoriteAP }}
                                 </p>
                             </v-card-text>
