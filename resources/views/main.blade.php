@@ -5,7 +5,7 @@
    //ここでログインしているデータを拾う
    $data = Auth::id();
    ?>
-
+   
     <div id="app">
         <router-view/>
     </div>

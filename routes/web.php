@@ -18,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/main', [App\Http\Controllers\HomeController::class, 'index']);
 
+Route::get('/gestLogin', [App\Http\Controllers\Auth\LoginController::class,'guestLogin']);

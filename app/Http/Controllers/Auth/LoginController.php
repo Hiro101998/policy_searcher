@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::MAIN;
 
     /**
      * Create a new controller instance.
@@ -40,7 +41,20 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        return 'home#/home';
+        return 'main#/home';
         //ログイン後のURLの指定
+    }
+
+    //ゲストログイン
+    public function guestLogin()
+    {
+    $email = 'aaa@example.com';
+    $password = 'password';
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        return redirect('main#/home')->with('flash_message', 'ゲストログインしました');
+    }
+    else{
+        return redirect('/');
+    }
     }
 }

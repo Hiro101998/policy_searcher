@@ -16,5 +16,5 @@
 </template>
 
 <script>
-
+const user_id= window.Laravel
 </script>
