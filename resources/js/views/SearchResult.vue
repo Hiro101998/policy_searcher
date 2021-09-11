@@ -64,7 +64,7 @@
                   閉じる
                 </v-btn>
                 <v-btn
-                  class="mx-2"
+                  class="mx-2 test"
                   fab
                   dark
                   small

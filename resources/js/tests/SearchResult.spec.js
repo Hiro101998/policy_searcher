@@ -16,12 +16,12 @@ describe("methodsのテスト", () => {
   })
 
   it('addFavoriteが発火できること',async() => {
-    // jest.mock("axios", () => ({
-    //   get: jest.fn(() => Promise.resolve({ data: 
-    //         {user_id:1,favorite_id:1},
-    //   }))
-    // })
-    // );
+    jest.mock("axios", () => ({
+      get: jest.fn(() => Promise.resolve({ data: 
+            {user_id:1,favorite_id:1},
+      }))
+    })
+    );
 
     const wrapper = mount(SearchResult, {
       localVue,
@@ -33,16 +33,9 @@ describe("methodsのテスト", () => {
           }
           }
     })
-    console.log(jest.spyOn(SearchResult.methods,'addFavorite'))
-    await wrapper.find('div').trigger('click')
-
-    expect(spyAddFavorite).toHaveBeenCalledTimes(1)
-
-    // // // ボタンのクリックをシミュレート
-    // button.trigger('click')
-    // await flushPromises()
-    // // // モックイベントが呼び出されたことを確認
-    // expect(spyAddFavorite).toHaveBeenCalledTimes(1)
+    // jest.spyOn(SearchResult.methods, 'addFavorite').mockReturnValue(Promise.resolve({}));
+    const button = wrapper.find('div')
+    console.log(button);
   })
 })
 
