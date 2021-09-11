@@ -2,7 +2,7 @@
     <v-app>
         <div v-if="this.gestLogin">
             <v-alert colored-border type="warning" elevation="2">
-                ゲストユーザーはお気に入り機能を利用できません
+                ゲストユーザーは利用できません。
             </v-alert>
         </div>
         <div v-else>
