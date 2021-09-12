@@ -34,8 +34,7 @@ describe("methodsのテスト", () => {
           }
     })
     // jest.spyOn(SearchResult.methods, 'addFavorite').mockReturnValue(Promise.resolve({}));
-    const button = wrapper.find('div')
-    console.log(button);
+    expect(wrapper.vm.addFavorite).toHaveBeenCalledTimes(1)
   })
 })
 
