@@ -20,7 +20,7 @@
 ・mysql Ver 8.0.23<br>
 ・AWS(・VPC・EC2・RDS・IAM・Route53・ELB・ACM)<br>
 ・phpMyAdmin<br>
-・Virtualbox<br>
+・VirtualBox<br>
 
 ## ER図
 ![ER図 (完成版)](https://user-images.githubusercontent.com/77914934/132987082-df4127d0-e467-417d-945a-862b7905ed82.png)
