@@ -19,7 +19,7 @@
 ・vuetify@2.5.3<br>
 ・mysql Ver 8.0.23<br>
 ・AWS(・VPC・EC2・RDS・IAM・Route53・ELB・ACM)<br>
-・phpMyAdmin
+・phpMyAdmin<br>
 ・Virtualbox<br>
 
 ## ER図
