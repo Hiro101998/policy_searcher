@@ -1,63 +1,36 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 大学ポリシー検索ツール
+各大学の定めるポリシーを簡単に検索できるアプリケーションです。<br>
+受験生に後悔のない進路選択をして欲しい。という願いを込めて作成しました。<br>
+進路選択の判断材料としてご活用いただけます。<br>
+お気に入り機能を実装しており、気になった大学のデータはストックしておくことが可能です。
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+<img width="1440" alt="スクリーンショット 2021-09-12 16 54 10" src="https://user-images.githubusercontent.com/77914934/132985974-ba06489f-e3f6-4233-a9ae-b923f6976748.png">
+アプリURL:  https://univpolicy.net<br>
+アプリの詳細な説明: https://qiita.com/asameshi/items/3f54da0cbe88bc74f295<br>
+（大学のポリシーとは何か、など詳しく説明しております。併せてご確認いただけますと幸いです。）
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 使用技術
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+・PHP 7.3<br>
+・Laravel 8.45<br>
+・javaScript<br>
+・vue@2.6.14<br>
+・vuetify@2.5.3<br>
+・mysql Ver 8.0.23<br>
+・AWS(・VPC・EC2・RDS・IAM・Route53・ELB・ACM)<br>
+・Virtualbox<br>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ER図
+![ER図 (完成版)](https://user-images.githubusercontent.com/77914934/132987082-df4127d0-e467-417d-945a-862b7905ed82.png)
 
-## Learning Laravel
+## インフラ構成図
+![インフラ構成図](https://user-images.githubusercontent.com/77914934/132987121-7c84ba2d-be9d-4bd0-a965-a7f7d1a627d4.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# policy_searcher
+## 機能一覧
+ログイン機能（Laravel Auth）<br>
+大学の検索機能<br>
+ポリシーの表示機能<br>
+お気に入り追加機能（Ajax）<br>
+お気に入り削除機能（Ajax）<br>
+ご指摘・ご意見等投稿機能（formrun使用）<br>
