@@ -25,7 +25,7 @@
 ![ER図 (完成版)](https://user-images.githubusercontent.com/77914934/132987082-df4127d0-e467-417d-945a-862b7905ed82.png)
 
 ## インフラ構成図
-![インフラ構成図](https://user-images.githubusercontent.com/77914934/132987121-7c84ba2d-be9d-4bd0-a965-a7f7d1a627d4.png)
+![test](https://user-images.githubusercontent.com/77914934/132987843-463caa16-cb6b-460f-a6d4-94caef101fad.png)
 
 ## 機能一覧
 ログイン機能（Laravel Auth）<br>
@@ -34,3 +34,4 @@
 お気に入り追加機能（Ajax）<br>
 お気に入り削除機能（Ajax）<br>
 ご指摘・ご意見等投稿機能（formrun使用）<br>
+
