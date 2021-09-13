@@ -30,7 +30,7 @@
 ・vue@2.6.14<br>
 ・vuetify@2.5.3<br>
 ・mysql Ver 8.0.23<br>
-・AWS(・VPC・EC2・RDS・IAM・Route53・ELB・ACM)<br>
+・AWS(・VPC・EC2・RDS・IAM・Route53・ALB・ACM)<br>
 ・phpMyAdmin<br>
 ・VirtualBox<br>
 
