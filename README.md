@@ -38,7 +38,8 @@
 ![ER図 (完成版)](https://user-images.githubusercontent.com/77914934/132987082-df4127d0-e467-417d-945a-862b7905ed82.png)
 
 ## インフラ構成図
-![test](https://user-images.githubusercontent.com/77914934/132987843-463caa16-cb6b-460f-a6d4-94caef101fad.png)
+![infra](https://user-images.githubusercontent.com/77914934/133074531-9f18153d-1ca8-4a70-9054-60dcf1e9218d.png)
+
 
 ## 機能一覧
 ログイン機能（Laravel Auth）<br>
