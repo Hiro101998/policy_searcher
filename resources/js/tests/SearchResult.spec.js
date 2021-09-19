@@ -1,42 +1,47 @@
-require('jsdom-global');
-import { shallowMount,mount,createLocalVue } from '@vue/test-utils';
+require("jsdom-global");
+import { shallowMount, mount, createLocalVue } from "@vue/test-utils";
 import Vue from "vue";
 import Vuetify from "vuetify";
-import SearchResult from '../views/SearchResult.vue';
-import flushPromises from "flush-promises"
+import SearchResult from "../views/SearchResult.vue";
+import flushPromises from "flush-promises";
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
 describe("methodsのテスト", () => {
-  const localVue = createLocalVue();
-  let vuetify;
-  
-  beforeEach(() => {
-    vuetify = new Vuetify();
-  })
+    const localVue = createLocalVue();
+    let vuetify;
 
-  it('addFavoriteが発火できること',async() => {
-    jest.mock("axios", () => ({
-      get: jest.fn(() => Promise.resolve({ data: 
-            {user_id:1,favorite_id:1},
-      }))
-    })
-    );
+    beforeEach(() => {
+        vuetify = new Vuetify();
+    });
 
-    const wrapper = mount(SearchResult, {
-      localVue,
-      vuetify,
-      setData:{
+    beforeAll(() => {
+        window.alert = jest.fn()
+        })
+
+    it("should display alerts", async () => {
+        const wrapper = mount(SearchResult, {
+            localVue,
+            vuetify,
+        });
+        await wrapper.setData({ 
+            clickId: 1,
             newFavorite:{
-              subject_id:1,
-              user_id:1
-          }
-          }
-    })
-    // jest.spyOn(SearchResult.methods, 'addFavorite').mockReturnValue(Promise.resolve({}));
-    expect(wrapper.vm.addFavorite).toHaveBeenCalledTimes(1)
-  })
-})
+                subject_id :1,
+                user_id :1
+            },
+            registeredSubject_id:1
+            })
+
+            expect(wrapper.vm.clickId).toBe(1)
+            expect(wrapper.vm.newFavorite.subject_id).toBe(1)
+            expect(wrapper.vm.newFavorite.user_id).toBe(1)
+            expect(wrapper.vm.registeredSubject_id).toBe(1)
+
+        await wrapper.vm.addFavorite
+        expect(wrapper.vm.addFavoriteResult).toBe(false)
+    });
+});
 
 // it('検索結果がない時はエラーが表示される', () => {
 //   const wrapper = shallowMount(SearchResult,{
@@ -48,7 +53,7 @@ describe("methodsのテスト", () => {
 //   // //エラーが描画される
 //   expect(wrapper.text()).toBe('条件に合致するデータがありません。条件を変更して再検索してください。')
 //   })
-  
+
 // it('検索結果がある時はエラーが表示されない', () => {
 //   const wrapper = shallowMount(SearchResult,{
 //   propsData:{
@@ -71,7 +76,7 @@ describe("methodsのテスト", () => {
 //       subject_name:"ヨーロッパ学科",
 //       university_id:97,
 //       university_name:"愛知県立大学",
-//       updated_at:"2021-07-15 20:00:00"  
+//       updated_at:"2021-07-15 20:00:00"
 //     }
 //     }
 //     }
@@ -81,28 +86,22 @@ describe("methodsのテスト", () => {
 //   })
 
 //メソッドのテスト
-  // it('addfavorieの検証', async () =>{
-  //   jest.mock("axios", () => ({
-  //     get: jest.fn(() => Promise.resolve({ data: 
-  //           {user_id:1,favorite_id:1},
-  //     }))
-  //   })
-  //   );
-  //   const wrapper = shallowMount(SearchResult,{
-  //   setData:{
-  //     newFavorite:{
-  //       subject_id:1,
-  //       user_id:1
-  //   }
-  //   }
-  //   })
-  //   // await wrapper.vm.addFavorite();
-  //   const addFavorite = wrapper.find('div')
-  //   console.log(addFavorite)
-  // })
-
-
-
-
-
-
+// it('addfavorieの検証', async () =>{
+//   jest.mock("axios", () => ({
+//     get: jest.fn(() => Promise.resolve({ data:
+//           {user_id:1,favorite_id:1},
+//     }))
+//   })
+//   );
+//   const wrapper = shallowMount(SearchResult,{
+//   setData:{
+//     newFavorite:{
+//       subject_id:1,
+//       user_id:1
+//   }
+//   }
+//   })
+//   // await wrapper.vm.addFavorite();
+//   const addFavorite = wrapper.find('div')
+//   console.log(addFavorite)
+// })

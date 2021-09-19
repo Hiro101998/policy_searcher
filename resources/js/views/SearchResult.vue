@@ -105,9 +105,9 @@ export default {
       clickId:'',
       dialog: false,
       displays:[],
-      favorites:[],
       favoriteSubject_id:[],
       registeredSubject_id:[],
+      addFavoriteResult:'',
 
       newFavorite:{
         user_id:'',
@@ -149,16 +149,17 @@ export default {
 			        }
           if(this.registeredSubject_id.includes(this.newFavorite.subject_id)){
                 alert("お気に入りに登録済です。");
+                this.addFavoriteResult = false
               }
            else{
             let favorite = this.newFavorite
             axios.post('/api/store',favorite)
             .then(res => {
               // favoite関係のデータをリセットする。
-              this.favorites = []
               this.registeredSubject_id =[]
             })   
              alert("お気に入りに追加しました。");
+              this.addFavoriteResult = true
               this.dialog =false
           }     
           })
