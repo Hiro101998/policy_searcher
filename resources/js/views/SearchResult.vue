@@ -1,6 +1,6 @@
 <template>
     <v-app>
-         <div v-if="errorMessage">
+        <div v-if="errorMessage">
             <v-alert colored-border type="warning" elevation="2">
                 条件に合致するデータがありません。条件を変更して再検索してください。
             </v-alert>
@@ -110,19 +110,20 @@
                 </v-col>
             </v-row>
         </div>
-       
     </v-app>
 </template>
 
 <script>
 //  window.location.href = 'main#/universitySearch'
-const user_id = window.Laravel;
+import axios from "axios";
+// const user_id = window.Laravel;
 export default {
     props: ["searchResults"],
     data() {
         return {
-            addFavoriteResult:'',
-            errorMessage:false,
+            user_id: "",
+            addFavoriteResult: "",
+            errorMessage: false,
             clickId: "",
             dialog: false,
             displays: [],
@@ -136,10 +137,12 @@ export default {
             }
         };
     },
-    mounted(){
-        if(this.searchResults.length <1){
-            this.errorMessage = true
+    mounted() {
+        if (this.searchResults.length < 1) {
+            this.errorMessage = true;
         }
+        //main.bladeで修得したログインユーザの情報
+        this.user_id = window.Laravel;
     },
     methods: {
         moreInfo(getSubjectId) {
@@ -161,41 +164,51 @@ export default {
         },
         //お気に入りに追加する
         addFavorite() {
-            //ゲストユーザーはお気に入り
-            if ((user_id == 1)) {
+            //ゲストユーザーはお気に入り登録できない。
+            if (this.user_id == 1) {
                 alert("ゲストユーザーはお気に入り機能を利用できません");
+                console.log("A");
             } else {
+                console.log("B");
                 this.newFavorite.subject_id = this.clickId;
-                this.newFavorite.user_id = user_id;
+                this.newFavorite.user_id = this.user_id;
                 //重複チェック
-                const getFavoriteUrl = "/api/favorite/" + user_id;
+                const getFavoriteUrl = "/api/favorite/" + this.user_id;
                 axios
                     .get(getFavoriteUrl)
                     .then(response => {
                         //お気に入りデータの取得
-                        let favorites = response.data.favorites;
-                        for (let i = 0; i < favorites.length; i++) {
+                        for (let i = 0; i < response.data.favorites; i++) {
                             this.registeredSubject_id.push(
-                                favorites[i].subject_id
+                                response.data.favorites[i].subject_id
                             );
                         }
                         if (
+                            (console.log("C"),
                             this.registeredSubject_id.includes(
                                 this.newFavorite.subject_id
-                            )
+                            ))
                         ) {
                             alert("お気に入りに登録済です。");
-                            this.addFavoriteResult = false
+                            this.addFavoriteResult = false;
                         } else {
-                            let favorite = this.newFavorite;
-                            axios.post("/api/store", favorite).then(res => {
-                                // favoite関係のデータをリセットする。
-                                this.favorites = [];
-                                this.registeredSubject_id = [];
-                            });
-                            alert("お気に入りに追加しました。");
-                            this.addFavoriteResult = true
-                            this.dialog = false;
+                            console.log("D");
+                            axios
+                                .post("/api/store", this.newFavorite)
+                                .then(res => {
+                                    // favoite関係のデータをリセットする。
+                                    this.favorites = [];
+                                    this.registeredSubject_id = [];
+                                    console.log("E");
+                                    alert("お気に入りに追加しました。");
+                                    console.log("F");
+                                    this.addFavoriteResult = true;
+                                    console.log("G");
+                                    this.dialog = false;
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                });
                         }
                     })
                     .catch(error => {
