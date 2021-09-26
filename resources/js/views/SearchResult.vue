@@ -116,7 +116,7 @@
 
 <script>
 //  window.location.href = 'main#/universitySearch'
-const user_id = window.Laravel;
+import axios from 'axios'
 export default {
     props: ["searchResults"],
     data() {
@@ -128,7 +128,8 @@ export default {
             favorites: [],
             favoriteSubject_id: [],
             registeredSubject_id: [],
-
+            checkAuthority:true,
+            addFavoriteResult:'',
             newFavorite: {
                 user_id: "",
                 subject_id: ""
@@ -158,17 +159,20 @@ export default {
             (this.clickId = ""), (this.displays = "");
             this.dialog = false;
         },
+
         //お気に入りに追加する
-        addFavorite() {
-            //ゲストユーザーはお気に入り
-            if ((user_id == 1)) {
+        async addFavorite() {
+            //ゲストユーザーはお気に入り登録できない
+            const user_id = window.Laravel
+             if (user_id == 1) {
                 alert("ゲストユーザーはお気に入り機能を利用できません");
+                this.checkAuthority = false
             } else {
                 this.newFavorite.subject_id = this.clickId;
                 this.newFavorite.user_id = user_id;
                 //重複チェック
-                const getFavoriteUrl = "/api/favorite/" + user_id;
-                axios
+                const getFavoriteUrl = "/api/favorite/" + window.Laravel;
+                await axios
                     .get(getFavoriteUrl)
                     .then(response => {
                         //お気に入りデータの取得
@@ -184,6 +188,7 @@ export default {
                             )
                         ) {
                             alert("お気に入りに登録済です。");
+                            this.addFavoriteResult =false;
                         } else {
                             let favorite = this.newFavorite;
                             axios.post("/api/store", favorite).then(res => {
@@ -193,6 +198,7 @@ export default {
                             });
                             alert("お気に入りに追加しました。");
                             this.dialog = false;
+                            this.addFavoriteResult =true
                         }
                     })
                     .catch(error => {
@@ -200,6 +206,7 @@ export default {
                     });
             }
         }
+        
     }
 };
 </script>
