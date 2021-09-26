@@ -117,7 +117,6 @@
 <script>
 //  window.location.href = 'main#/universitySearch'
 import axios from 'axios'
-const user_id = window.Laravel;
 export default {
     props: ["searchResults"],
     data() {
@@ -160,10 +159,12 @@ export default {
             (this.clickId = ""), (this.displays = "");
             this.dialog = false;
         },
+
         //お気に入りに追加する
         async addFavorite() {
-            //ゲストユーザーはお気に入り
-            if (user_id == 1) {
+            //ゲストユーザーはお気に入り登録できない
+            const user_id = window.Laravel
+             if (user_id == 1) {
                 alert("ゲストユーザーはお気に入り機能を利用できません");
                 this.checkAuthority = false
             } else {
@@ -205,6 +206,7 @@ export default {
                     });
             }
         }
+        
     }
 };
 </script>
