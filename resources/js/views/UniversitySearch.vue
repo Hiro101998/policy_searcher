@@ -96,7 +96,7 @@
                         x-large
                         color="success"
                         dark
-                        @click="search_universities()"
+                        @click="searchUniversity()"
                     >
                         検索
                     </v-btn>
@@ -107,6 +107,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     data() {
         return {
@@ -146,6 +147,7 @@ export default {
                 }
                 //分野のデータを取得
                 this.fields = response.data.fields;
+                console.log(response.data.fields)
                 for (let i = 0; i < response.data.prefectures.fields; i++) {
                     fields.push(response.data.fields[i]);
                 }
@@ -161,7 +163,7 @@ export default {
     },
     methods: {
         //大学名検索でヒットしたもののみ配列に追加
-        search_universities() {
+        searchUniversity() {
             const university = this.universities;
             //<--大学名検索-->
             let searchWord = this.keyWord;
@@ -237,6 +239,8 @@ export default {
             this.$router.push({
                 name: "searchResult",
                 params: { searchResults: this.searchResults }
+            }).catch(error => {
+                console.log(error);
             });
         }
     }
