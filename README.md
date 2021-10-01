@@ -38,7 +38,7 @@
 ![ER図 (完成版)](https://user-images.githubusercontent.com/77914934/132987082-df4127d0-e467-417d-945a-862b7905ed82.png)
 
 ## インフラ構成図
-![infra](https://user-images.githubusercontent.com/77914934/133074531-9f18153d-1ca8-4a70-9054-60dcf1e9218d.png)
+![infra](https://user-images.githubusercontent.com/77914934/135564014-41d7f0da-7bfb-4597-9048-97fc64df1916.png)
 
 
 ## 機能一覧
